@@ -3,6 +3,7 @@ FYI this is a sample for now
 
 **MealMates** is a collaborative app designed to help roommates **plan meals, organize grocery shopping**, and **coordinate cooking responsibilities**. With intelligent AI assistance, it also helps the designated cook navigate recipes and complete tasks seamlessly in the kitchen.
 
+Project Management File: https://miro.com/app/board/uXjVIEec6lw=/
 ---
 
 ## 🚀 Features
