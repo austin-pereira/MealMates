@@ -88,6 +88,4 @@ We welcome contributions! Feel free to open issues or submit pull requests. Plea
 
 MIT License
 
----
 
-Let me know if you'd like to tailor this for a class project, hackathon, or a specific tech stack!
