@@ -28,7 +28,7 @@ const Login = ({ onLoginSuccess }: LoginProps) => {
       }
       onLoginSuccess(); // Redirect after successful login/signup
     } catch (error: any) {
-      setError(error.message || `Failed to ${isLogin ? 'sign in' : 'sign up'}`);
+      setError(`Failed to ${isLogin ? 'sign in' : 'sign up'}`);
       console.error(`${isLogin ? 'Login' : 'Signup'} error:`, error);
     }
   };
