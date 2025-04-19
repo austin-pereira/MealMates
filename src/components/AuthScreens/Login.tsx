@@ -3,35 +3,41 @@ import '../../styles/auth.css';
 import { auth, googleProvider } from '../../firebaseConfig';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
+interface LoginProps {
+  onLoginSuccess: () => void;
+}
 
-const Login = () => {
+const Login = ({ onLoginSuccess }: LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleEmailPasswordSignIn = async () => {
+  const handleEmailPasswordSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // User signed in successfully
-    } catch (error) {
-      // Handle errors here
+      console.log('User signed in successfully');
+      onLoginSuccess(); // Redirect after successful login
+    } catch (error: any) {
+      setError(error.message || 'Failed to sign in');
+      console.error('Login error:', error);
     }
   };
 
   const handleGoogleSignIn = async () => {
+    setError('');
+    
     try {
       await signInWithPopup(auth, googleProvider);
-      // User signed in with Google successfully
-      console.log("done!");
-    } catch (error) {
-      // Handle errors here
+      console.log('User signed in with Google successfully');
+      onLoginSuccess(); // Redirect after successful Google login
+    } catch (error: any) {
+      setError(error.message || 'Failed to sign in with Google');
+      console.error('Google login error:', error);
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Login attempt with:', { email, password });
-    // Add actual authentication logic here
   };
 
   return (
@@ -41,7 +47,9 @@ const Login = () => {
         <div className="auth-tab">Sign up</div>
       </div>
       
-      <form className="auth-form" onSubmit={handleSubmit}>
+      {error && <div className="auth-error">{error}</div>}
+      
+      <form className="auth-form" onSubmit={handleEmailPasswordSignIn}>
         <div className="form-group">
           <label htmlFor="email">Your Email</label>
           <input
@@ -76,7 +84,7 @@ const Login = () => {
           </div>
         </div>
         
-        <button type="submit" className="auth-button primary" onClick={handleEmailPasswordSignIn}>
+        <button type="submit" className="auth-button primary">
           Continue
         </button>
         

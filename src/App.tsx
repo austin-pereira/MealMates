@@ -6,20 +6,14 @@ import './App.css';
 function App() {
   const [currentScreen, setCurrentScreen] = useState<'login' | 'group'>('login');
 
+  const handleLoginSuccess = () => {
+    setCurrentScreen('group');
+  };
+
   return (
     <div className="app-container">
       {currentScreen === 'login' ? (
-        <div>
-          <Login />
-          <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <button 
-              onClick={() => setCurrentScreen('group')} 
-              style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}
-            >
-              Go to Group Selection (for demo purposes)
-            </button>
-          </div>
-        </div>
+        <Login onLoginSuccess={handleLoginSuccess} />
       ) : (
         <div>
           <GroupSelection />
