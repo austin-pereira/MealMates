@@ -3,6 +3,7 @@ import Login from './components/AuthScreens/Login';
 import GroupSelection from './components/AuthScreens/GroupSelection';
 import CreateGroup from './components/AuthScreens/CreateGroup';
 import ExistingGroup from './components/AuthScreens/ExistingGroup';
+import ForgotPassword from './components/AuthScreens/ForgotPassword';
 import './App.css';
 
 const Routes = () => {
@@ -11,6 +12,7 @@ const Routes = () => {
         {path: '/group', element: <GroupSelection />},
         {path: '/create-group', element: <CreateGroup />},
         {path: '/existing-group', element: <ExistingGroup />},
+        {path: '/forgot-password', element: <ForgotPassword />},
     ]);
     
     return element;
