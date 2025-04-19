@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import '../../styles/auth.css';
 import { auth, googleProvider } from '../../firebaseConfig';
+import { Link, useNavigate } from 'react-router-dom';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
-interface LoginProps {
-  onLoginSuccess: () => void;
-}
-
-const Login = ({ onLoginSuccess }: LoginProps) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,11 +20,12 @@ const Login = ({ onLoginSuccess }: LoginProps) => {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
         console.log('User signed in successfully');
+        navigate('/group');
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
         console.log('User signed up successfully');
+        navigate('/group');
       }
-      onLoginSuccess(); // Redirect after successful login/signup
     } catch (error: any) {
       setError(`Failed to ${isLogin ? 'sign in' : 'sign up'}`);
       console.error(`${isLogin ? 'Login' : 'Signup'} error:`, error);
@@ -39,7 +38,7 @@ const Login = ({ onLoginSuccess }: LoginProps) => {
     try {
       await signInWithPopup(auth, googleProvider);
       console.log('User signed in with Google successfully');
-      onLoginSuccess(); // Redirect after successful Google login
+      navigate('/group');
     } catch (error: any) {
       setError(error.message || 'Failed to sign in with Google');
       console.error('Google login error:', error);
