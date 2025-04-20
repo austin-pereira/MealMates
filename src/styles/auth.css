@@ -12,6 +12,15 @@
     border-bottom: 2px solid #eee;
     margin-bottom: 30px;
   }
+
+  .auth-tab-pw {
+    color: #FF9F00;
+    display: flex;
+    border-bottom: 2px solid #FF9F00;
+    margin-bottom: 30px;
+    /* center the text */
+    justify-content: center;
+  }
   
   .auth-tab {
     padding: 10px 0;
