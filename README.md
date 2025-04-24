@@ -78,7 +78,9 @@ npm start
 - Recipe saving & rating system  
 
 ---
+Implementation File: https://docs.google.com/document/d/1dbq2YJv6xnOimSqQpBVLHj_0aKrkWsK8mlvVqQvLBmM/edit?tab=t.0
 
+---
 ## 🙌 Contributing
 
 We welcome contributions! Feel free to open issues or submit pull requests. Please follow our [Code of Conduct](CODE_OF_CONDUCT.md) when contributing.
