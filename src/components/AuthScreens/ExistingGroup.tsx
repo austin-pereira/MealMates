@@ -17,6 +17,8 @@ const ExistingGroup = () => {
     return () => unsubscribe();
   }, [navigate]);
 
+  
+
   return (
     <div>
       <h1>Existing Group</h1>
