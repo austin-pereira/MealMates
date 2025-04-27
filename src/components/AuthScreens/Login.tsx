@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../../styles/auth.css';
 import { auth, googleProvider, githubProvider } from '../../firebaseConfig';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,13 @@ const Login = () => {
   const [error, setError] = useState('');
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    if (passwordInput) {
+      passwordInput.type = showPassword ? 'text' : 'password';
+    }
+  }, [showPassword]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,19 +105,12 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <div className="password-input">
             <input
-              type={showPassword ? "text" : "password"}
+              type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button 
-              type="button" 
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? '👁️' : '👁️'}
-            </button>
           </div>
           {isLogin && (
             <div className="forgot-password">
