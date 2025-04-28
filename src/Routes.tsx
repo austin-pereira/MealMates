@@ -11,7 +11,7 @@ const Routes = () => {
         {path: '/', element: <Login />},
         {path: '/group', element: <GroupSelection />},
         {path: '/create-group', element: <CreateGroup />},
-        {path: '/existing-group', element: <ExistingGroup />},
+        {path: '/existing-group/:id', element: <ExistingGroup />},
         {path: '/forgot-password', element: <ForgotPassword />},
     ]);
     

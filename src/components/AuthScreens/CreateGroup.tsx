@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useState } from "react";
 import { auth } from '../../firebaseConfig';
+import { NewGroup } from './DataStorage';
 
 const CreateGroup = () => {
   const navigate = useNavigate();
@@ -27,8 +28,9 @@ const CreateGroup = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert(`Name: ${formData.name}, Description: ${formData.description}`
-    );
+    //alert(`Name: ${formData.name}, Description: ${formData.description}`);
+    let id = NewGroup(formData.name, formData.description, auth.currentUser?.email || "nil");
+    navigate(`/existing-group/${id}`);
   };
 
   return (
