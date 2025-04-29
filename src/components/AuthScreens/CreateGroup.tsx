@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useState } from "react";
 import { auth } from '../../firebaseConfig';
-import { NewGroup } from './DataStorage';
+import { NewGroup } from './GroupDataStorage';
 
 const CreateGroup = () => {
   const navigate = useNavigate();
