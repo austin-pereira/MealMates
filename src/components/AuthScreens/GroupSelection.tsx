@@ -51,24 +51,19 @@ const GroupSelection = () => {
 
   const GroupElement: React.FC<GroupItem> = ({groupid, groupJSON}) => {
     let group = JSON.parse(groupJSON);
-    
+      
     return (
       <div>
         <p>Group Name: {group['name']}</p>
         <button className="auth-button secondary" onClick={() => navigate(`/existing-group/${groupid}`)}>Go To Group</button>
       </div>
-      
     );
   }
 
-  
-
   const RenderGroups = () => {
-    let groupIDs = GetAllGroupIDsFromUser(auth.currentUser?.email || "nil");
-
     return (
       <div>
-        {groupIDs.map((item, index) => createDynamicComponent(GroupElement, {groupid : item, groupJSON : JSON.stringify(JSON.parse(GetGroup(item))[item])}))}
+        {GetAllGroupIDsFromUser(auth.currentUser?.email || "nil").map((item, index) => createDynamicComponent(GroupElement, {groupid : item, groupJSON : JSON.stringify(JSON.parse(GetGroup(item))[item])}))}
       </div>
     );
   }
@@ -80,20 +75,20 @@ const GroupSelection = () => {
         <RenderGroups />
 
         <div className="divider">
-          <span>Or</span>
+        <span>Or</span>
         </div>
 
         <button className="auth-button primary" onClick={handleCreateGroup}>
-          CREATE GROUP
+        CREATE GROUP
         </button>
 
         <button className="auth-button primary" onClick={ClearLocal}>
-          DEBUG: CLEAR STORAGE
+        DEBUG: CLEAR STORAGE
         </button>
 
         <button className="auth-button logout" onClick={handleLogout}>
-          LOGOUT
-      </button>
+        LOGOUT
+        </button>
       </div>
     </div>
   );
