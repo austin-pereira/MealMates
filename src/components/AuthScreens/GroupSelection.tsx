@@ -16,6 +16,10 @@ const GroupSelection = () => {
     navigate('/existing-group'); // Replace with your desired route
   };
 
+  const handleCookingAssistant = () => {
+    navigate('/cooking-assistant'); // Replace with your desired route
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
@@ -49,6 +53,9 @@ const GroupSelection = () => {
         
         <button className="auth-button secondary" onClick={handleExistingGroup}>
           EXISTING GROUP
+        </button>
+        <button className="auth-button assistant" onClick={handleCookingAssistant}>
+          COOKING ASSISTANT
         </button>
         <button className="auth-button logout" onClick={handleLogout}>
           LOGOUT
