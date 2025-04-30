@@ -6,6 +6,7 @@ import ExistingGroup from './components/AuthScreens/ExistingGroup';
 import ForgotPassword from './components/AuthScreens/ForgotPassword';
 import InviteToGroup from './components/AuthScreens/InviteToGroup';
 import './App.css';
+import CookingAssistant from './CookingAssistant';
 
 const Routes = () => {
     let element = useRoutes([
@@ -15,6 +16,7 @@ const Routes = () => {
         {path: '/existing-group/:id', element: <ExistingGroup />},
         {path: '/existing-group/invite/:id', element: <InviteToGroup />},
         {path: '/forgot-password', element: <ForgotPassword />},
+        {path: '/cooking-assistant', element: <CookingAssistant />},
 
     ]);
     

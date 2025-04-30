@@ -19,6 +19,10 @@ const GroupSelection = () => {
     navigate('/existing-group'); // Replace with your desired route
   };
 
+  const handleCookingAssistant = () => {
+    navigate('/cooking-assistant'); // Replace with your desired route
+  };
+  
   const ClearLocal = () => {
     WipeLocalStorage();
     navigate('/group');
@@ -80,6 +84,9 @@ const GroupSelection = () => {
 
         <button className="auth-button primary" onClick={handleCreateGroup}>
         CREATE GROUP
+        </button>
+        <button className="auth-button assistant" onClick={handleCookingAssistant}>
+          COOKING ASSISTANT
         </button>
 
         <button className="auth-button primary" onClick={ClearLocal}>
