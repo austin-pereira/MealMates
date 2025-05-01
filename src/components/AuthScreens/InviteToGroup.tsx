@@ -9,6 +9,10 @@ import { AddUserToGroup } from './GroupDataStorage';
 
 const InviteToGroup = () => {
   const navigate = useNavigate();
+
+  const returnToGroupSelection = () => {
+		navigate('/group'); // Replace with your desired route
+	};
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -37,7 +41,7 @@ const InviteToGroup = () => {
 
   const ReturnToGroup = () => {
     const { id } = useParams() as { id: string };
-    navigate(`/existing-group/invite/${id}`);
+    navigate(`/existing-group/${id}`);
   }
 
   return(
@@ -48,7 +52,9 @@ const InviteToGroup = () => {
 
         <button type="submit">Submit</button>
       </form>
-      <button className="auth-button secondary" onClick={ReturnToGroup}>Back To Group</button>
+      <div>
+        <button className="auth-button secondary" onClick={ReturnToGroup}>Back To Group</button>
+      </div>
     </div>
   );
 }

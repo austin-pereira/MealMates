@@ -7,6 +7,12 @@ import { auth } from '../../firebaseConfig';
 import { Role, GetGroup, LeaveGroup, DeleteGroup, IsOwner, GetUserRole, GetAllMembersInGroup } from './GroupDataStorage';
 import { createDynamicComponent } from './Utils';
 
+/*
+TODO: 
+- add task creation and task assignment
+- integrate shopping lists
+*/
+
 const ExistingGroup = () => {
 	const navigate = useNavigate();
 
@@ -85,9 +91,12 @@ const ExistingGroup = () => {
   <h1>Existing Group</h1>
   <Group />
   
-  <button className="auth-button secondary" onClick={returnToGroupSelection}>
-    Return to Group Selection
+  <div>
+    <button className="auth-button secondary" onClick={returnToGroupSelection}>
+      Return to Group Selection
     </button>
+  </div>
+  
   </div>
   );
 };
