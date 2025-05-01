@@ -175,3 +175,115 @@
     gap: 20px;
     width: 100%;
   }
+
+  .group-box {
+    background-color: #2b2b2b;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    gap: 1.5rem;
+  }
+  
+  .group-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .group-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .group-card {
+    background-color: #3a3a3a;
+    padding: 1.2rem;
+    border-radius: 12px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .group-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+  }
+  
+  .group-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #888;
+    margin: 1rem 0;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .divider span {
+    padding: 0 10px;
+  }
+  
+  .existing-group-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #1e1e1e;
+    color: white;
+  }
+  
+  .group-info-box {
+    background-color: #2b2b2b;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+  
+  .group-info-box h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .group-info-box p {
+    margin: 0;
+    font-size: 1rem;
+    color: #ccc;
+  }
+  
+  .group-info-box .auth-button {
+    width: 100%;
+    max-width: 320px;
+  }
