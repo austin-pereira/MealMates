@@ -27,28 +27,36 @@ const CreateGroup = () => {
     navigate(`/existing-group/${id}`);
   };
 
+  const handleBack = () => {
+    navigate('/group');
+  };
+
   return (
     <div className="auth-container">
       <div className="group-box">
-        <h2>Create Group</h2>
+        <h2 className="group-title">Create Group</h2>
         <form className="group-form" onSubmit={handleSubmit}>
-          <input
+        <input
             type="text"
             name="name"
             placeholder="Group Name"
             value={formData.name}
             onChange={handleChange}
             required
-          />
-          <input
+        />
+        <input
             type="text"
             name="description"
             placeholder="Description (optional)"
             value={formData.description}
             onChange={handleChange}
-          />
-          <button type="submit" className="auth-button logout">Submit</button>
+        />
+        <button type="submit" className="auth-button logout">Submit</button>
+        <button type="button" className="auth-button secondary" onClick={handleBack}>
+            Back to Group Selection
+        </button>
         </form>
+
       </div>
     </div>
   );
