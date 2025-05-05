@@ -349,5 +349,14 @@
     font-size: 0.9rem;
     color: #888;
   }
+
+  .group-form input[type="text"] {
+    margin-bottom: 12px;
+  }
+  
+  .group-title {
+    margin-bottom: 10px;
+  }
+  
   
   
