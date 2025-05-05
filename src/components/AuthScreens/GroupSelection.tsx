@@ -53,9 +53,19 @@ const GroupSelection = () => {
   };
 
   const RenderGroups = () => {
+    const groupIDs = GetAllGroupIDsFromUser(auth.currentUser?.email || 'nil');
+  
+    if (groupIDs.length === 0) {
+      return (
+        <div className="no-groups-message">
+          You are not in any groups currently.
+        </div>
+      );
+    }
+  
     return (
       <div className="group-list">
-        {GetAllGroupIDsFromUser(auth.currentUser?.email || 'nil').map((item) =>
+        {groupIDs.map((item) =>
           createDynamicComponent(GroupElement, {
             groupid: item,
             groupJSON: JSON.stringify(JSON.parse(GetGroup(item))[item]),

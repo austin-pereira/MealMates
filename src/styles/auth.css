@@ -287,3 +287,11 @@
     width: 100%;
     max-width: 320px;
   }
+
+  .no-groups-message {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
