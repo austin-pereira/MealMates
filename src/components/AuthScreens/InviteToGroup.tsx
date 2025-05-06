@@ -9,6 +9,7 @@ const InviteToGroup = () => {
   const navigate = useNavigate();
   const { id } = useParams() as { id: string };
 
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) navigate('/');
@@ -52,6 +53,7 @@ const InviteToGroup = () => {
         <button className="auth-button secondary" onClick={returnToGroup}>
           Back To Group
         </button>
+
       </div>
     </div>
   );

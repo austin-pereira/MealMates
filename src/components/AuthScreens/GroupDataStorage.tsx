@@ -16,8 +16,13 @@ export function NewGroup(groupname:string, description:string, user:string): str
   groupobject[`${newid}`] = {"name" : `${groupname}`, "description" : `${description}`, "members" : {}};
   groupobject[`${newid}`]["members"][`${user}`] = {"role" : Role.OWNER};
   localStorage.setItem("groups", JSON.stringify(groupobject));
-
+  AutoPopulateGroup(`${newid}`,user);
   return newid.toString();
+}
+
+function AutoPopulateGroup(groupid: string, user:string){ //for presentation purposes only
+  AddUserToGroup(groupid, "oski.bear@berkeley.edu", user);
+  AddUserToGroup(groupid, "burnt_tree@jrcollege.edu", user); //stanford roast, dont take it seriously
 }
 
 //only the owner can delete a group
