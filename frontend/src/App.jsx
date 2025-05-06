@@ -10,6 +10,10 @@ import Analyzing from "./pages/Analyzing";
 import CookingScreen from "./pages/CookingPage";
 import CompletionScreen from "./pages/CompletionScreen"; 
 import FinishScreen from "./pages/FinishScreen";
+import WaitingForOthers from "./pages/WaitingForOthers";
+import WhoFinished from "./pages/WhoFinished";
+import CombiningTasks from "./pages/CombiningTasks";
+
 
 function App() {
 
@@ -42,6 +46,10 @@ function App() {
         <Route path="/cooking" element={<CookingScreen />} />
         <Route path="/completion" element={<CompletionScreen />} /> 
         <Route path="/finish" element={<FinishScreen />} />
+        <Route path="/waiting" element={<WaitingForOthers />} />
+        <Route path="/finished-sample" element={<WhoFinished />} />
+        <Route path="/combining" element={<CombiningTasks />} />
+
       </Routes>
     </Router>
   );

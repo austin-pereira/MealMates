@@ -9,7 +9,7 @@ function Tasks({ members, recipe }) {
     <div className="container">
   
       <MyTasks initialInstructions={instructions} members={members} />
-      <button onClick={() => navigate("/cook")} style={{ marginTop: "20px" }}>
+      <button onClick={() => navigate("/waiting")} style={{ marginTop: "20px" }}>
         Start Cooking
       </button>
     </div>
