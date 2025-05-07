@@ -18,8 +18,8 @@ const ExistingRecipe = () => {
         return () => unsubscribe();
     }, [navigate]);
 
-    const returnToGroupSelection = () => {
-        navigate('/group'); // Replace with your desired route
+    const returnToGroup = () => {
+        navigate(`/existing-group/${id}`); // Replace with your desired route
     };
 
     // Add recipes data and click handler
@@ -63,8 +63,8 @@ const ExistingRecipe = () => {
                     </li>
                 ))}
             </ul>
-            <button onClick={returnToGroupSelection} className="mt-6 text-blue-500 hover:underline">
-                Back to Group Selection
+            <button onClick={returnToGroup} className="mt-6 text-blue-500 hover:underline">
+                Back to Group
             </button>
         </div>
     );
