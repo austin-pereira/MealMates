@@ -87,7 +87,7 @@ const ExistingGroup = () => {
           >
             {isOwner ? 'Delete' : 'Leave'} Group
           </button>
-          <button className="auth-button secondary" onClick={() => navigate(`/existing-group/create-recipe/${id}`)}>Create Recipe</button>
+          <button className="auth-button secondary" onClick={() => navigate(`/existing-group/new-recipe/${id}`)}>Create Recipe</button>
           <button className="auth-button secondary" onClick={() => navigate(`/existing-group/recipes/${id}`)}>View Recipes</button>
           <button className="auth-button secondary" onClick={() => navigate(`/existing-group/shopping-list/${id}`)}>Shopping List</button>
           <button className="auth-button secondary" onClick={() => navigate(`/existing-group/tasks/${id}`)}>Tasks</button>

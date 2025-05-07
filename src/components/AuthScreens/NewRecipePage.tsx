@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 // Define the shape of a recipe
 type Recipe = {
@@ -11,6 +11,7 @@ type Recipe = {
 function NewRecipePage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
 
   const recipeData = location.state as Recipe | undefined;
 
@@ -24,6 +25,16 @@ function NewRecipePage() {
   );
 
   const [newIngredient, setNewIngredient] = useState("");
+  const [newInstruction, setNewInstruction] = useState("");
+
+  // Load recipes from localStorage on component mount
+  useEffect(() => {
+    const savedRecipes = localStorage.getItem(`recipes-${id}`);
+    if (savedRecipes && !recipeData) {
+      const recipes = JSON.parse(savedRecipes);
+      setRecipe(recipes[recipes.length - 1] || recipe);
+    }
+  }, [id]);
 
   // Add new ingredient
   const handleAddIngredient = () => {
@@ -45,9 +56,41 @@ function NewRecipePage() {
     });
   };
 
+  // Add new instruction
+  const handleAddInstruction = () => {
+    if (!newInstruction.trim()) return;
+    setRecipe({
+      ...recipe,
+      instructions: [...recipe.instructions, newInstruction.trim()]
+    });
+    setNewInstruction("");
+  };
+
+  // Remove an instruction
+  const handleRemoveInstruction = (index: number): void => {
+    setRecipe({
+      ...recipe,
+      instructions: recipe.instructions.filter((_, i) => i !== index)
+    });
+  };
+
+  // Save recipe
+  const handleSaveRecipe = () => {
+    const savedRecipes = localStorage.getItem(`recipes-${id}`);
+    const recipes = savedRecipes ? JSON.parse(savedRecipes) : [];
+    recipes.push(recipe);
+    localStorage.setItem(`recipes-${id}`, JSON.stringify(recipes));
+    navigate(`/existing-group/recipes/${id}`);
+  };
+
   return (
     <div className="container">
-      <h2>{recipe.title}</h2>
+      <input
+        type="text"
+        value={recipe.title}
+        onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
+        className="text-2xl font-bold mb-4 w-full"
+      />
 
       <h3>Ingredients</h3>
       <ul>
@@ -72,11 +115,27 @@ function NewRecipePage() {
       <h3>Instructions</h3>
       <ol>
         {recipe.instructions.map((instruction: string, index: number) => (
-          <li key={index}>{instruction}</li>
+          <li key={index}>
+            {instruction}{" "}
+            <button onClick={() => handleRemoveInstruction(index)}>
+              Remove
+            </button>
+          </li>
         ))}
       </ol>
 
-      <button onClick={() => navigate(-1)}>Back to Recipes</button>
+      <input
+        type="text"
+        value={newInstruction}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewInstruction(e.target.value)}
+        placeholder="Add new instruction"
+      />
+      <button onClick={handleAddInstruction}>Add Instruction</button>
+
+      <div className="mt-4">
+        <button onClick={handleSaveRecipe} className="mr-2">Save Recipe</button>
+        <button onClick={() => navigate(`/existing-group/recipes/${id}`)}>Back to Recipes</button>
+      </div>
     </div>
   );
 }
