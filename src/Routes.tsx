@@ -9,6 +9,7 @@ import './App.css';
 import CookingAssistant from './CookingAssistant';
 import ExistingRecipe from './components/AuthScreens/ExistingRecipe';
 import CreateRecipe from './components/AuthScreens/CreateRecipe';
+import NewRecipePage from './components/AuthScreens/NewRecipePage';
 
 const Routes = () => {
     let element = useRoutes([
@@ -21,6 +22,7 @@ const Routes = () => {
         {path: '/cooking-assistant', element: <CookingAssistant />},
         {path: '/existing-group/recipes/:id', element: <ExistingRecipe />},
         {path: '/existing-group/create-recipe/:id', element: <CreateRecipe />},
+        {path: '/existing-group/new-recipe/:id', element: <NewRecipePage />},
 
     ]);
     
