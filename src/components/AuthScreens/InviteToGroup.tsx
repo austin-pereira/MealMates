@@ -1,62 +1,62 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useState } from "react";
 import { auth } from '../../firebaseConfig';
 import { AddUserToGroup } from './GroupDataStorage';
+import '../../styles/auth.css';
 
 const InviteToGroup = () => {
   const navigate = useNavigate();
+  const { id } = useParams() as { id: string };
 
-  const returnToGroupSelection = () => {
-		navigate('/group'); // Replace with your desired route
-	};
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        navigate('/'); // Redirect to login page if not logged in
-      }
+      if (!user) navigate('/');
     });
-  
     return () => unsubscribe();
   }, [navigate]);
-  
-  const [formData, setFormData] = useState({email: ""});
+
+  const [formData, setFormData] = useState({ email: '' });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { id } = useParams() as { id: string };
-    if(AddUserToGroup(id,formData.email,auth.currentUser?.email || "")){
+    if (AddUserToGroup(id, formData.email, auth.currentUser?.email || '')) {
       navigate(`/existing-group/${id}`);
-    } 
+    }
   };
 
-  const ReturnToGroup = () => {
-    const { id } = useParams() as { id: string };
-    navigate(`/existing-group/${id}`);
-  }
+  const returnToGroup = () => navigate(`/existing-group/${id}`);
 
-  return(
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Enter the email of the user you want to invite:</label>
-        <div><input type="text" id="email" name="email" value={formData.email} onChange={handleChange}/></div>
+  return (
+    <div className="auth-container group-selection">
+      <div className="group-box">
+        <h2 className="group-title">Invite to Group</h2>
+        <form className="group-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="email"
+            placeholder="Enter user's email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" className="auth-button logout">
+            Submit
+          </button>
+        </form>
+        <button className="auth-button secondary" onClick={returnToGroup}>
+          Back To Group
+        </button>
 
-        <button type="submit">Submit</button>
-      </form>
-      <div>
-        <button className="auth-button secondary" onClick={ReturnToGroup}>Back To Group</button>
       </div>
     </div>
   );
-}
+};
 
 export default InviteToGroup;

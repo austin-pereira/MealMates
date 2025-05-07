@@ -8,9 +8,10 @@ const CookingAssistant = () => {
     const [showOptions, setShowOptions] = useState(false);
     const [placeholder, setPlaceholder] = useState("What can I help you with?");
     const [image, setImage] = useState(null);
+    const [wantsVideo, setWantsVideo] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [history, setHistory] = useState([]);
-    const chatScrollRef = useRef(null); // Ref for scrollable area
+    const chatScrollRef = useRef(null);
 
     // Function to handle form submission
     const handleSubmit = async () => {
@@ -41,6 +42,7 @@ const CookingAssistant = () => {
             text: question,
             recipie: hasRecipe ? recipe : undefined,
             image: hasImage ? URL.createObjectURL(image) : undefined,
+            videoPreferred: wantsVideo
         };
 
         Object.keys(formData).forEach(key => formData[key] === undefined && delete formData[key]);
@@ -57,7 +59,10 @@ const CookingAssistant = () => {
 
             if (!res.ok) throw new Error('Failed to fetch response');
 
-            const data = await res.text();
+            let data = await res.text();
+            if (wantsVideo) {
+                data = "https://www.youtube.com/watch?v=P6W8kwmwcno";
+            }
 
             setHistory(prev => [...prev, { question, response: data }]);
             setSubmitted(true);
@@ -84,14 +89,14 @@ const CookingAssistant = () => {
         setSubmitted(false);
         setHistory([]);
         setShowOptions(false);
+        setWantsVideo(false);
     };
 
-    // Scroll to the bottom of the chat area whenever a new message is added
     useEffect(() => {
         if (chatScrollRef.current) {
             chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
         }
-    }, [history]); // This effect will trigger every time the history changes
+    }, [history]);
 
     return (
         <div className='assistant-container'>
@@ -120,6 +125,15 @@ const CookingAssistant = () => {
                             </label>
                             <button id='recipie-button' onClick={() => setShowOptions(!showOptions)}>Select Recipe ↓</button>
                         </div>
+                        <div className='checkbox-container'>
+                            <input
+                                type='checkbox'
+                                id='video-checkbox'
+                                checked={wantsVideo}
+                                onChange={(e) => setWantsVideo(e.target.checked)}
+                            />
+                            <label htmlFor='video-checkbox'>Generate Video</label>
+                        </div>
                         <button
                             id='submit-button'
                             onClick={handleSubmit}
@@ -137,12 +151,24 @@ const CookingAssistant = () => {
                                         <p>{entry.question}</p>
                                     </div>
                                     <div className='message assistant-message'>
-                                        <p>{entry.response.split('\n').map((line, idx) => (
-                                            <span key={idx}>
-                                                {line}
-                                                <br />
-                                            </span>
-                                        ))}</p>
+                                        {
+                                            entry.response.startsWith('https://www.youtube.com') ? ( 
+                                                <iframe
+                                                    width="100%"
+                                                    height="315"
+                                                    src={entry.response.replace('watch?v=', 'embed/')}
+                                                    title="YouTube video response"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            ) : (
+                                                <p>{entry.response.split('\n').map((line, idx) => (
+                                                    <span key={idx}>
+                                                        {line}
+                                                        <br />
+                                                    </span>
+                                                ))}</p>
+                                            )
+                                        }
                                     </div>
                                 </React.Fragment>
                             ))}

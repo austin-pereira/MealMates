@@ -206,3 +206,51 @@ label {
 .options-popup.above-plus button:hover {
     background-color: #666;
 }
+
+.video-checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #555;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #eee;
+    cursor: pointer;
+}
+
+#video-checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #444;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 0;
+}
+
+#video-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    width: 4px;
+    height: 8px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+
+#video-checkbox:checked {
+    background-color: #FF9F00;
+    border-color: #FF9F00;
+}
+
+#video-checkbox:checked::after {
+    opacity: 1;
+}
