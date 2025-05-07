@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import './styles/assistant.css';
 
 const CookingAssistant = () => {
@@ -12,6 +13,7 @@ const CookingAssistant = () => {
     const [submitted, setSubmitted] = useState(false);
     const [history, setHistory] = useState([]);
     const chatScrollRef = useRef(null);
+    const navigate = useNavigate();
 
     // Function to handle form submission
     const handleSubmit = async () => {
@@ -140,6 +142,9 @@ const CookingAssistant = () => {
                         >
                             Submit
                         </button>
+                        <br />
+                        <button id='submit-button' onClick={() => navigate(-1)}>Back to Groups</button>
+                            
                     </div>
                 ) : (
                     <div className='response-area'>
