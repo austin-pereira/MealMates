@@ -71,7 +71,7 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container login-page">
       <div className="auth-tabs">
         <div 
           className={`auth-tab ${isLogin ? 'active' : ''}`}
